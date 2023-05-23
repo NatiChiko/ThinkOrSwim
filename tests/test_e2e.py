@@ -36,3 +36,4 @@ class TestEnd2End(BaseClass):
         print("hello")
         print("hallo")
         print("hola")
+        print('ciao')
