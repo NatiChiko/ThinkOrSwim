@@ -33,3 +33,4 @@ class TestEnd2End(BaseClass):
         tradePage.get_review_button().click()
         logger = self.get_logger()
         logger.info(tradePage)
+        print("hello")
