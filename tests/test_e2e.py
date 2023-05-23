@@ -34,3 +34,4 @@ class TestEnd2End(BaseClass):
         logger = self.get_logger()
         logger.info(tradePage)
         print("hello")
+        print("hallo")
