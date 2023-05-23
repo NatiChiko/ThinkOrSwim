@@ -35,3 +35,4 @@ class TestEnd2End(BaseClass):
         logger.info(tradePage)
         print("hello")
         print("hallo")
+        print("hola")
