@@ -4,7 +4,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 
+<<<<<<< HEAD
 def pytest_addoption(parser):cd
+=======
+def pytest_addoption(parser):
+>>>>>>> ea16bfbaf62c3aaf7e70990966e04e9a00d5a441
     parser.addoption(
         "--browser-name", action="store", default="chrome"
     )
@@ -19,7 +23,11 @@ def setup(request):
     options.add_experimental_option("detach", True)
     browser_name = request.config.getoption("--browser-name")
     if browser_name == "chrome":
+<<<<<<< HEAD
         service_obj = Service("C:\\Users\\nchik\\Downloads\\chromedriver_win32\\chromedriver.exe")
+=======
+        service_obj = Service("C:\\Users\\nchik\\chromedriver_win32 (2)\\chromedriver.exe")
+>>>>>>> ea16bfbaf62c3aaf7e70990966e04e9a00d5a441
         driver = webdriver.Chrome(service=service_obj, options=options)
     elif browser_name == "firefox":
         service_obj = Service("C:\\ProgramData\\chocolatey\\bin\\geckodriver.exe")
