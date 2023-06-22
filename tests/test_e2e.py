@@ -1,4 +1,6 @@
 from time import sleep
+
+import pytest
 from selenium.webdriver import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -33,3 +35,8 @@ class TestEnd2End(BaseClass):
         tradePage.get_review_button().click()
         logger = self.get_logger()
         logger.info(tradePage)
+
+print("good")
+
+
+        

@@ -4,16 +4,29 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 
+def pytest_addoption(parser):cd
+    parser.addoption(
+        "--browser-name", action="store", default="chrome"
+    )
+
+
 @pytest.fixture(scope='class')
 def setup(request):
+    global driver
     options = Options()
-    options.add_argument("__start-maximized")
-    options.add_argument("__ignore-certificate-errors")
+    options.add_argument("--start-maximized")
+    options.add_argument("--ignore-certificate-errors")
     options.add_experimental_option("detach", True)
-    service_obj = Service("C:\\Users\\nchik\\chromedriver_win32 (2)\\chromedriver.exe")
-    driver = webdriver.Chrome(service=service_obj, options=options)
-    driver.implicitly_wait(10)
-    driver.get("https://www.tdameritrade.com/tools-and-platforms/thinkorswim/web.html?TID=NA&ef_id=Cj0KCQjwpPKiBhDvARIsACn-gzB9LAhpQUIk4VQF-3QSSoBhaI0__SE3qC-thw5bdcUge5QbvAidXG4aArlREALw_wcB:G:s&s_kwcid=AL!2521!3!518660092256!e!!g!!thinkorswim%20paper%20money%20login&CID=PSTOS&gad=1&dclid=CjgKEAjwpPKiBhCd4ujAufCtg0kSJADS989r_r-KRpJPPb_fTQM2pQFjUkxgKp4EDM_3O75wS7AL7vD_BwE")
+    browser_name = request.config.getoption("--browser-name")
+    if browser_name == "chrome":
+        service_obj = Service("C:\\Users\\nchik\\Downloads\\chromedriver_win32\\chromedriver.exe")
+        driver = webdriver.Chrome(service=service_obj, options=options)
+    elif browser_name == "firefox":
+        service_obj = Service("C:\\ProgramData\\chocolatey\\bin\\geckodriver.exe")
+        driver = webdriver.Firefox(service=service_obj)
+    driver.implicitly_wait(15)
+    driver.get("https://www.tdameritrade.com/tools-and-platforms/thinkorswim.html?TID=NA&ef_id=Cj0KCQjwjryjBhD0ARIsAMLvnF_-lfstevKaaZSZ6AuokimdFFNZ8SMoYueo_Q75MAfMEJoGngyIyKQaAuHTEALw_wcB:G:s&s_kwcid=AL!2521!3!516515983854!e!!g!!think%20or%20swim&CID=PSTOS&gad=1&dclid=CjgKEAjwjryjBhCO6t3GjrXByzcSJADfpqL9qkXUMfA91kEbJVqsEhZRf8MpkSQrvUjXeixlCQKPJ_D_BwE")
     request.cls.driver = driver
     yield
     driver.quit()
+
